@@ -7,4 +7,4 @@ Experiment results on two Foursquare check-in datasets [[NYC,TKY](https://sites.
 * Pytorch 1.4
 # Project Structure
 * baselines
-* * [markov.py](baseline/markov.py)
+ * [markov.py](baseline/markov.py)
