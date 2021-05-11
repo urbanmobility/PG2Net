@@ -19,16 +19,16 @@ from model import PG2Net
 from collections import defaultdict
 
 encoder.FLOAT_REPR = lambda o: format(o, '.3f')
-#导入location的预训练模型
+
+#Import the pre-trained model of location
 wvmodel = gensim.models.KeyedVectors.load_word2vec_format("loc.emb",binary=False,encoding='utf-8')
 vocab_size=len(wvmodel.vocab)+1
 vector_size=wvmodel.vector_size #500
 weight = torch.randn(vocab_size, vector_size)
 words= wvmodel.wv.vocab #(loc,vec)
-word_to_idx = {word: int(word) for _, word in enumerate(words)} #loc:index
+word_to_idx = {word: int(word) for _, word in enumerate(words)}
 word_to_idx['<unk>'] = 0
-#print(word_to_idx) '78':78
-idx_to_word = {int(word): word for _, word in enumerate(words)} #index:(loc,vec)
+idx_to_word = {int(word): word for _, word in enumerate(words)}
 idx_to_word[0] = '<unk>'
 for i in range(len(wvmodel.index2word)):
     try:
@@ -38,7 +38,7 @@ for i in range(len(wvmodel.index2word)):
     vector=wvmodel.wv.get_vector(idx_to_word[word_to_idx[wvmodel.index2word[i]]])
     weight[index, :] = torch.from_numpy(vector)
 
-#导入location category的预训练模型
+#Import the pre-trained model of Category
 wvmodel = gensim.models.KeyedVectors.load_word2vec_format("cid.emb",binary=False,encoding='utf-8')
 vocab_size=len(wvmodel.vocab)+1
 vector_size=wvmodel.vector_size #50
@@ -83,9 +83,9 @@ def run(args):
     optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),lr=parameters.lr,weight_decay=parameters.L2)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'max', patience=parameters.lr_step,factor=parameters.lr_decay, threshold=1e-3)
     lr = parameters.lr
-    #衡量指标
+    #Metrics
     metrics = {'train_loss': [], 'valid_loss': [], 'accuracy': [], 'valid_acc': {}}
-    candidate = parameters.data_neural.keys() #937个用户 0-937
+    candidate = parameters.data_neural.keys() #937 users
 
     data_train, train_idx = generate_input_long_history(parameters.data_neural, 'train', candidate=candidate)
     data_test, test_idx = generate_input_long_history(parameters.data_neural, 'test', candidate=candidate)
@@ -105,11 +105,11 @@ def run(args):
     if not SAVE_PATH + tmp_path:
         os.mkdir(SAVE_PATH + tmp_path)
 
-    #计算时间相似度,
+    #Computing time similarity
     time_sim_matrix = caculate_time_sim(parameters.data_neural) #(48,48)
-    #导入时间和cid类别关系
+    #Import time and category relationship
     poi_cid_tim = pickle.load(open('cid_time.pkl', 'rb'), encoding='iso-8859-1')
-    #导入每个位置之间的空间距离
+    #Import the spatial distance between each location
     poi_distance_matrix = pickle.load(open('distance.pkl', 'rb'), encoding='iso-8859-1')
 
     for epoch in range(parameters.epoch):
@@ -175,7 +175,7 @@ def run(args):
     mid = np.argmax(metrics['accuracy'])
     avg_acc = metrics['accuracy'][mid]
     load_name_tmp = 'ep_' + str(mid) + '.m'
-    print("最优模型:",SAVE_PATH + tmp_path + load_name_tmp)
+    print("Best model:",SAVE_PATH + tmp_path + load_name_tmp)
     return avg_acc
 
 def load_pretrained_model(config):
@@ -225,8 +225,8 @@ if __name__ == '__main__':
     parser.add_argument('--L2', type=float, default=1 * 1e-5, help=" weight decay (L2 penalty)")
     parser.add_argument('--clip', type=float, default=5.0)
     parser.add_argument('--epoch_max', type=int, default=40)
-    parser.add_argument('--data_path', type=str, default='数据集路径')
-    parser.add_argument('--save_path', type=str, default='文件保存路径')
+    parser.add_argument('--data_path', type=str, default='data_path')
+    parser.add_argument('--save_path', type=str, default='save_path')
     parser.add_argument('--pretrain', type=int, default=0)
     args = parser.parse_args()
     if args.pretrain == 1:

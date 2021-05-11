@@ -39,7 +39,6 @@ def minibatch(*tensors, **kwargs):
             yield tuple(x[i:i + batch_size] for x in tensors)
 
 def pad_batch_of_lists_masks(batch_of_lists, max_len):
-    print("batch_of_lists",batch_of_lists[0])
     padded = [l + [0] * (max_len - len(l)) for l in batch_of_lists]
     padded_mask = [[1.0]*(len(l) - 1) + [0.0] * (max_len - len(l) + 1) for l in batch_of_lists]
     padde_mask_non_local = [[1.0] * (len(l)) + [0.0] * (max_len - len(l)) for l in batch_of_lists]

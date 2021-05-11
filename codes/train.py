@@ -108,7 +108,7 @@ def generate_input_long_history(data_neural, mode, candidate=None):
 
 def generate_queue(train_idx, mode, mode2):
     user = list(train_idx.keys())
-    train_queue = deque()  #引入一个队列
+    train_queue = deque()
     if mode == 'random':
         initial_queue = {}
         for u in user:

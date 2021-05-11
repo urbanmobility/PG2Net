@@ -8,7 +8,7 @@ uid_list = data['uid_list']
 data_neural = data['data_neural']
 poi_coordinate = data['vid_lookup']
 
-#计算时间相似度
+#Computing time similarity
 def caculate_time_sim(data_neural):
     time_checkin_set = defaultdict(set)
     for uid in data_neural: #每个用户
@@ -32,7 +32,7 @@ def caculate_time_sim(data_neural):
             sim_matrix[i][j] = jaccard_ij
     return sim_matrix  #是一个对称矩阵
 
-#计算距离矩阵
+#Calculate the distance matrix
 def geodistance(lng1,lat1,lng2,lat2):
     lng1, lat1, lng2, lat2 = map(radians, [float(lng1), float(lat1), float(lng2), float(lat2)])
     dlon=lng2-lng1
@@ -58,7 +58,7 @@ def caculate_poi_distance(poi_coors):
     pickle.dump(sim_matrix, open('distance_nyc.pkl', 'wb'))
     return sim_matrix
 
-#计算t和category的关系
+#Calculate the relationship between time and category
 def caculate_time_cid(data_neural):
     sim_matrix = np.zeros((48,242))
     for uid in data_neural: #每个用户
@@ -71,12 +71,12 @@ def caculate_time_cid(data_neural):
                 sim_matrix[timid,locid] += 1
     return sim_matrix
 
-#构造location和location category 有向有权图
-def construc_graph(data_neural):
+#Gonstruct_Graph(location and category)
+def construct_graph(data_neural):
     time_checkin_set = {}
-    for uid in data_neural: #每个用户
+    for uid in data_neural:
         uid_sessions = data_neural[uid]
-        train_id = data_neural[uid]['train'] #训练id
+        train_id = data_neural[uid]['train'] #train id
         for c, sid in enumerate(train_id):
             session_current = uid_sessions['sessions'][sid]
             size = len(session_current)

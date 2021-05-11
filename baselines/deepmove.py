@@ -210,8 +210,6 @@ class TrajPreAttnAvgLongUser(nn.Module):
         # out_state = F.selu(out_state)
 
         attn_weights = self.attn(out_state[-target_len:], history).unsqueeze(0) #获得生成的目标值和历史值的Atten  [1, 10, 10])
-        # print("attn_weights",attn_weights.shape)
-        # print("history", history.shape) [10, 500]
         context = attn_weights.bmm(history.unsqueeze(0)).squeeze(0) #(1,10,10) * (1,10,500) -->(1,10,500)
         out = torch.cat((out_state[-target_len:], context), 1)  # no need for fc_attn
 
