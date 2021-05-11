@@ -8,6 +8,6 @@ Experiment results on two Foursquare check-in datasets [[NYC,TKY](https://sites.
 # Project Structure
 * baselines
   * Markov.py
-  * DeepMove.py [Paper]()
-  * PLSPL.py [Paper]()
-  * LSTPM.py [Paper]()
+  * DeepMove.py [Paper](https://dl.acm.org/doi/abs/10.1145/3178876.3186058)
+  * PLSPL.py [Paper](https://ieeexplore.ieee.org/abstract/document/9117156)
+  * LSTPM.py [Paper](https://ojs.aaai.org/index.php/AAAI/article/view/5353)
