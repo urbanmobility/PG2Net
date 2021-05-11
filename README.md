@@ -7,7 +7,7 @@ Experiment results on two Foursquare check-in datasets [[NYC,TKY](https://sites.
 * Pytorch 1.4
 # Project Structure
 * baselines
-  * markov.py
-  * markov.py
-  * markov.py
-  * markov.py
+  * Markov.py
+  * DeepMove.py [Paper]()
+  * PLSPL.py [Paper]()
+  * LSTPM.py [Paper]()
