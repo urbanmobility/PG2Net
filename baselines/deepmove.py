@@ -1,5 +1,5 @@
 # coding: utf-8
-"""DeepMove"""
+"""DeepMove Model"""
 from __future__ import print_function
 from __future__ import division
 

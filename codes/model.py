@@ -1,4 +1,5 @@
 # coding: utf-8
+"""PG2Net Model"""
 from __future__ import print_function
 from __future__ import division
 

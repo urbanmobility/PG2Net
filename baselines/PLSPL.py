@@ -1,5 +1,5 @@
 # coding: utf-8
-"""PLSPL"""
+"""PLSPL Model"""
 from __future__ import print_function
 from __future__ import division
 import torch

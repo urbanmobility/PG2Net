@@ -1,4 +1,4 @@
-"""Markov"""
+"""Markov Model"""
 def markov(parameters, candidate):
     validation = {}
     for u in candidate:
