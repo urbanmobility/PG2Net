@@ -11,3 +11,10 @@ Experiment results on two Foursquare check-in datasets [[NYC,TKY](https://sites.
   * DeepMove.py [Paper](https://dl.acm.org/doi/abs/10.1145/3178876.3186058)
   * PLSPL.py [Paper](https://ieeexplore.ieee.org/abstract/document/9117156)
   * LSTPM.py [Paper](https://ojs.aaai.org/index.php/AAAI/article/view/5353)
+* codes
+  * main.py # setting parameters
+  * train.py # train model
+  * model.py # define models
+  * utils.py # define tools
+ 
+
