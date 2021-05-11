@@ -20,6 +20,7 @@ Experiment results on two Foursquare check-in datasets [[NYC,TKY](https://sites.
 * Train model
   #python main.py
 # Result
-top-1 accuracy | top-5 accuracy | top-10 accuracy 
+|top-1 accuracy|top-5 accuracy|top-10 accuracy|
+|---------------------------------------------|
  
 
