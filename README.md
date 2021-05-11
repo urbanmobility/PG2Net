@@ -16,5 +16,8 @@ Experiment results on two Foursquare check-in datasets [[NYC,TKY](https://sites.
   * train.py # train model
   * model.py # define models
   * utils.py # define tools
+# Usage
+* Train model
+  python main.py
  
 
