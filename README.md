@@ -5,3 +5,6 @@ Experiment results on two Foursquare check-in datasets [[NYC,TKY](https://sites.
 # Requirements
 * Python 3.6
 * Pytorch 1.4
+# Project Structure
+* baselines
+* * markov.py
